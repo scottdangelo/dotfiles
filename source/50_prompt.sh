@@ -24,7 +24,7 @@
 
 if [[ ! "${prompt_colors[@]}" ]]; then
   prompt_colors=(
-    "36" # information color
+    "30" # information color
     "37" # bracket color
     "31" # error color
   )
@@ -134,10 +134,46 @@ function prompt_command() {
   PS1="$PS1$c1[$c0\u$c1@$c0\h$c1:$c0\w$c1]$c9"
   PS1="$PS1\n"
   # date: [HH:MM:SS]
-  PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9"
+  #PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9"
   # exit code: 127
   PS1="$PS1$(prompt_exitcode "$exit_code")"
   PS1="$PS1 \$ "
 }
 
-PROMPT_COMMAND="prompt_command"
+export LAST_PROMPT=0
+function tp() {
+    export PS1='$';
+}
+function bp() {
+        local exit_code=$?
+        # If the first command in the stack is prompt_command, no command was run.
+        # Set exit_code to 0 and reset the stack.
+        [[ "${prompt_stack[0]}" == "prompt_command" ]] && exit_code=0
+        prompt_stack=()
+
+        # Manually load z here, after $? is checked, to keep $? from being clobbered.
+        [[ "$(type -t _z)" ]] && _z --add "$(pwd -P 2>/dev/null)" 2>/dev/null
+
+        # While the simple_prompt environment var is set, disable the awesome prompt.
+        [[ "$simple_prompt" ]] && PS1='\n$ ' && return
+
+        prompt_getcolors
+        # http://twitter.com/cowboy/status/150254030654939137
+        PS1="\n"
+        # svn: [repo:lastchanged]
+        PS1="$PS1$(prompt_svn)"
+        # git: [branch:flags]
+        PS1="$PS1$(prompt_git)"
+        # hg:  [branch:flags]
+        PS1="$PS1$(prompt_hg)"
+        # misc: [cmd#:hist#]
+        # PS1="$PS1$c1[$c0#\#$c1:$c0!\!$c1]$c9"
+        # path: [user@host:path]
+        PS1="$PS1$c1[$c0\u$c1@$c0\h$c1:$c0\w$c1]$c9"
+        PS1="$PS1\n"
+        # date: [HH:MM:SS]
+        #PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9"
+        # exit code: 127
+        PS1="$PS1$(prompt_exitcode "$exit_code")"
+}
+#PROMPT_COMMAND="prompt_command"

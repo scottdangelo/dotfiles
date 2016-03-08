@@ -22,3 +22,5 @@ fi
 
 # Disable ansible cows }:]
 export ANSIBLE_NOCOWS=1
+
+alias gotoback="cd ~/.dotfiles/backups/2016_03_08-10_52_03"

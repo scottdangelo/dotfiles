@@ -32,12 +32,12 @@ autocmd vimrc ColorScheme * :hi link multiple_cursors_cursor Search
 autocmd vimrc ColorScheme * :hi link multiple_cursors_visual Visual
 
 let g:molokai_italic=0
-colorscheme molokai
+colorscheme delek 
 set background=dark
 
 " Visual settings
 set cursorline " Highlight current line
-set number " Enable line numbers.
+set nonumber " disable line numbers.
 set showtabline=2 " Always show tab bar.
 set relativenumber " Use relative line numbers. Current line is still in status bar.
 set title " Show the filename in the window titlebar.
@@ -46,8 +46,8 @@ set noshowmode " Don't show the current mode (airline.vim takes care of us)
 set laststatus=2 " Always show status line
 
 " Show absolute numbers in insert mode, otherwise relative line numbers.
-autocmd vimrc InsertEnter * :set norelativenumber
-autocmd vimrc InsertLeave * :set relativenumber
+"autocmd vimrc InsertEnter * :set norelativenumber
+"autocmd vimrc InsertLeave * :set relativenumber
 
 " Make it obvious where 80 characters is
 set textwidth=80

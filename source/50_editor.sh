@@ -15,6 +15,12 @@ alias qs="q $DOTFILES"
 alias startsyn='synergys --config ~/tools/Synergy/synergy.conf'
 alias gpo="git push origin"
 alias startVPN="sudo openvpn --config /etc/openvpn/hp-client.ovpn"
+alias tm="®"
+alias sc="vi ~/.ssh/config"
+alias sb='source ~/.bashrc && echo source bashrc'
+alias c.="cd .."
+alias ..="cd ../.."
+alias ...="cd ../../.."
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth

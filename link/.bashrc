@@ -50,6 +50,8 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 alias 'pip'='pip3'
+alias 'grepno'='grep -R --exclude-dir node_modules'
+alias 'stud'='sda-WatsonStudio-11-12'
 
 export NPM_PACKAGES="/Users/scottda/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"

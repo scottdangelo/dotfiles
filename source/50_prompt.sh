@@ -176,4 +176,4 @@ function bp() {
         # exit code: 127
         PS1="$PS1$(prompt_exitcode "$exit_code")"
 }
-#PROMPT_COMMAND="prompt_command"
+PROMPT_COMMAND="prompt_command"

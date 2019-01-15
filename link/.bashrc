@@ -23,3 +23,6 @@ function dotfiles() {
 }
 
 src
+
+# added by travis gem
+[ -f /Users/scott/.travis/travis.sh ] && source /Users/scott/.travis/travis.sh
